@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Duar Agency — Dijital Pazarlama & Otomasyon</title>
+  <meta name="description" content="Duar Agency: Performans odaklı dijital pazarlama, funnel kurulumları, otomasyonlar ve içerik üretimi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0d12; --card:#121521; --muted:#161a28; --text:#e7edf7; --sub:#9fb2d1;
+      --brand:#6ea8fe; --brand-2:#a78bfa; --ok:#22c55e; --warn:#f97316; --err:#ef4444;
+      --radius:18px; --shadow:0 8px 30px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--text);}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:1180px; margin:auto; padding:0 20px}
+    .btn{display:inline-flex; align-items:center; gap:10px; border:none; border-radius:999px; padding:14px 20px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b0d12; font-weight:700; box-shadow:var(--shadow); cursor:pointer}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid #26314a}
+    .badge{padding:6px 10px; border-radius:999px; background:#0e1423; color:var(--brand); border:1px solid #1f2a44; font-size:12px; letter-spacing:.4px}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px); background:rgba(11,13,18,.6); border-bottom:1px solid #1b2338}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:68px}
+    .logo{display:flex; align-items:center; gap:10px; font-weight:800}
+    .logo-dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 0 20px rgba(110,168,254,.9)}
+    nav ul{display:flex; list-style:none; margin:0; padding:0; gap:20px}
+    nav a{color:var(--sub); font-weight:600}
+    .mobile-toggle{display:none; background:transparent; border:1px solid #2a3652; border-radius:10px; padding:8px 10px}
+    @media (max-width:860px){
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+      .mobile-open nav ul{display:flex; flex-direction:column; position:absolute; top:68px; left:0; right:0; background:#0d111b; padding:16px 20px; border-bottom:1px solid #1b2338}
+    }
+    .hero{padding:80px 0; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center}
+    .hero h1{font-size:46px; line-height:1.08; margin:0}
+    .hero p{color:var(--sub); font-size:18px}
+    .hero .card{background:var(--card); border:1px solid #1a2440; border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .hero .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px}
+    .stat{background:var(--muted); border:1px solid #222a41; padding:16px; border-radius:14px; text-align:center}
+    .stat b{font-size:22px}
+    @media (max-width:860px){.hero{grid-template-columns:1fr; padding:48px 0} .hero h1{font-size:36px}}
+
+    .section{padding:72px 0}
+    .section h2{margin:0 0 12px; font-size:32px}
+    .section p.lead{color:var(--sub)}
+
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{background:var(--card); border:1px solid #1a2440; border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
+    .card h3{margin-top:10px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #243154; border-radius:999px; color:var(--sub); font-size:12px}
+    @media (max-width:960px){.cards{grid-template-columns:1fr}}
+
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+    @media (max-width:960px){.grid-2{grid-template-columns:1fr}}
+
+    .process{counter-reset:step}
+    .step{display:flex; gap:14px; align-items:flex-start}
+    .step:before{counter-increment:step; content:counter(step); width:32px; height:32px; display:grid; place-items:center; border-radius:10px; background:linear-gradient(135deg,var(--brand-2),var(--brand)); color:#0b0d12; font-weight:800}
+
+    .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .price{background:linear-gradient(180deg,#12182a, #0f1424); border:1px solid #233157; border-radius:20px; padding:24px; box-shadow:var(--shadow)}
+    .price ul{margin:16px 0 0; padding:0; list-style:none; color:var(--sub)}
+    .price li{display:flex; align-items:center; gap:8px; margin:8px 0}
+    .price .tag{font-weight:800; font-size:30px}
+
+    .testimonials{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .quote{background:var(--muted); border:1px solid #222a41; border-radius:16px; padding:18px}
+    @media (max-width:960px){.pricing,.testimonials{grid-template-columns:1fr}}
+
+    form{display:grid; gap:12px}
+    input, textarea{background:#0f1424; border:1px solid #263255; border-radius:12px; padding:12px 14px; color:var(--text)}
+    input::placeholder, textarea::placeholder{color:#5d719d}
+    footer{padding:40px 0; color:#7f8db0; border-top:1px solid #1b2338}
+    .foot{display:flex; gap:16px; justify-content:space-between; align-items:center}
+    .foot small{color:#6a7aa4}
+    @media (max-width:760px){.foot{flex-direction:column; align-items:flex-start}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav" id="top">
+    <a class="logo" href="#top"><span class="logo-dot"></span> Duar Agency</a>
+    <nav>
+      <ul>
+        <li><a href="#services">Hizmetler</a></li>
+        <li><a href="#process">Süreç</a></li>
+        <li><a href="#pricing">Paketler</a></li>
+        <li><a href="#contact">İletişim</a></li>
+      </ul>
+    </nav>
+    <button class="mobile-toggle" id="burger" aria-label="Menüyü Aç/Kapat">☰</button>
+  </div>
+</header>
+
+<section class="hero container">
+  <div>
+    <span class="badge">Performans Odaklı Büyüme</span>
+    <h1>Funnel + Otomasyon + Reklam <br/> = <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; color:transparent">Kârlı Müşteri Akışı</span></h1>
+    <p>Ajansınız için uçtan uca büyüme sistemleri kuruyoruz: lead magnet → funnel sayfaları → e‑mail/DM otomasyonları → rezervasyonlar → satış.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px">
+      <a class="btn" href="#contact">Ücretsiz Keşif Çağrısı Al</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>+250k₺</b><br><small>Toplam reklam bütçesi yönetimi</small></div>
+      <div class="stat"><b>38%</b><br><small>Ortalama CR artışı</small></div>
+      <div class="stat"><b>1–3 ay</b><br><small>Öngörülen ROI penceresi</small></div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1529336953121-a0ce1dd6d01a?q=80&w=1200&auto=format&fit=crop" alt="Dashboard görseli"/>
+  </div>
+</section>
+
+<section class="section container" id="services">
+  <h2>Hizmetler</h2>
+  <p class="lead">Yüksek etkili, hızlı kurulumlu hizmet paketleri.</p>
+  <div class="cards">
+    <div class="card">
+      <span class="chip">Funnels</span>
+      <h3>Satış Hunisi Kurulumu</h3>
+      <p>Lead magnet → squeeze → thank you → nurturing e‑mailleri. Systeme.io / Lightfunnels / WordPress.</p>
+    </div>
+    <div class="card">
+      <span class="chip">Ads</span>
+      <h3>Meta & Google Reklamları</h3>
+      <p>GTM + Pixel kurulumları, hedef kitle segmentasyonu, A/B testleri, performans raporları.</p>
+    </div>
+    <div class="card">
+      <span class="chip">Automation</span>
+      <h3>Otomasyon & Entegrasyon</h3>
+      <p>n8n / Zapier akışları, CRM senkronizasyonu, ManyChat/WhatsApp otomatik yanıtlar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="process">
+  <h2>Süreç</h2>
+  <div class="grid-2 process">
+    <div class="step card">
+      <div>
+        <h3>Keşif & Yol Haritası</h3>
+        <p>Hedef, teklif, persona ve değer merdiveni netleştirme.</p>
+      </div>
+    </div>
+    <div class="step card">
+      <div>
+        <h3>Funnel & İçerik</h3>
+        <p>Landing → lead → nurturing; reklam yaratıcıları ve sayfa kopyaları.</p>
+      </div>
+    </div>
+    <div class="step card">
+      <div>
+        <h3>Otomasyon & Entegrasyon</h3>
+        <p>CRM, e‑posta, WhatsApp; n8n/Zapier akışları.</p>
+      </div>
+    </div>
+    <div class="step card">
+      <div>
+        <h3>Ölçümleme & Optimize</h3>
+        <p>GTM, piksel, A/B testleri; haftalık iterasyon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="pricing">
+  <h2>Paketler</h2>
+  <div class="pricing">
+    <div class="price">
+      <div class="tag">Başlangıç</div>
+      <p class="lead">Tek sayfa funnel, temel reklam kurulumu.</p>
+      <ul>
+        <li>✔️ 1x Landing + Teşekkür</li>
+        <li>✔️ E‑posta otomasyonu (5 adım)</li>
+        <li>✔️ Temel raporlama</li>
+      </ul>
+      <br><a class="btn" href="#contact">Teklif Al</a>
+    </div>
+    <div class="price" style="outline:2px solid var(--brand)">
+      <div class="tag">Büyüme</div>
+      <p class="lead">Çok adımlı funnel + retargeting.</p>
+      <ul>
+        <li>✔️ 3x Sayfa (Lead magnet dahil)</li>
+        <li>✔️ Meta + Google kampanya setleri</li>
+        <li>✔️ Haftalık optimizasyon</li>
+      </ul>
+      <br><a class="btn" href="#contact">Teklif Al</a>
+    </div>
+    <div class="price">
+      <div class="tag">Kurumsal</div>
+      <p class="lead">CRM entegrasyonlu, uçtan uca büyüme.</p>
+      <ul>
+        <li>✔️ 5+ Sayfa, blog/icerik</li>
+        <li>✔️ CRM + WhatsApp otomasyonları</li>
+        <li>✔️ A/B test & dashboard</li>
+      </ul>
+      <br><a class="btn" href="#contact">Teklif Al</a>
+    </div>
+  </div>
+</section>
+
+<section class="section container" id="testimonials">
+  <h2>Referanslar</h2>
+  <div class="testimonials">
+    <div class="quote">“İlk 30 günde randevular ikiye katlandı.” — <b>Diyetisyen A.</b></div>
+    <div class="quote">“CRM + WhatsApp otomasyonu ile satış ekibi nefes aldı.” — <b>B2B Tedarikçi</b></div>
+    <div class="quote">“Raporlama ve iterasyon düzeni kusursuz.” — <b>Kobiler İçin SaaS</b></div>
+  </div>
+</section>
+
+<section class="section container" id="contact">
+  <h2>İletişim</h2>
+  <div class="grid-2">
+    <div class="card">
+      <p class="lead">Birlikte büyütelim. 24 saat içinde dönüş yapıyoruz.</p>
+      <form onsubmit="return submitForm(event)">
+        <input required type="text" id="name" placeholder="Ad Soyad"/>
+        <input required type="email" id="email" placeholder="E‑posta"/>
+        <input type="text" id="company" placeholder="Şirket / Marka"/>
+        <textarea rows="5" id="msg" placeholder="Kısaca hedefinizi yazın"></textarea>
+        <button class="btn" type="submit">Gönder</button>
+        <p id="formStatus" aria-live="polite" style="color:var(--sub);"></p>
+      </form>
+    </div>
+    <div class="card">
+      <h3>Ofis</h3>
+      <p>Ankara, Türkiye</p>
+      <h3>E‑posta</h3>
+      <p><a href="mailto:hello@duar.agency">hello@duar.agency</a></p>
+      <h3>Sosyal</h3>
+      <p><a href="#">LinkedIn</a> · <a href="#">Instagram</a> · <a href="#">YouTube</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <small>© <span id="y"></span> Duar Agency</small>
+    <small><a href="#top">Yukarı çık ↑</a></small>
+  </div>
+</footer>
